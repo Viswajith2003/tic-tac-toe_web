@@ -1,5 +1,5 @@
 import React from 'react'
-import Game from './Tic-Tac-Toe'
+import Game from './Game/TicTacToe'
 
 export default function App() {
   return (
