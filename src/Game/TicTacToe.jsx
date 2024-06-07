@@ -1,88 +1,116 @@
 import React, { useState } from "react";
-import ".././Game/tictactoe.css";
+import "../Game/tictactoe.css";
 import circle_icon from "../assets/circle.jpg";
 import cross_icon from "../assets/cross.png";
 
 export default function Game() {
   const [board, setBoard] = useState(Array(9).fill(""));
   const [count, setCount] = useState(0);
+  const [winner, setWinner] = useState(null);
   const [lock, setLock] = useState(false);
 
+  const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  const checkWinner = (newBoard) => {
+    for (let combination of winningCombinations) {
+      const [a, b, c] = combination;
+      if (
+        newBoard[a] &&
+        newBoard[a] === newBoard[b] &&
+        newBoard[a] === newBoard[c]
+      ) {
+        return newBoard[a];
+      }
+    }
+    return null;
+  };
+
   const toggle = (num) => {
-    if (lock || board[num] !== "") {
+    if (lock || board[num] !== "" || winner) {
       return;
     }
 
     const newBoard = board.slice();
-    if (count % 2 === 0) {
-      newBoard[num] = "x";
-    } else {
-      newBoard[num] = "o";
-    }
-
+    newBoard[num] = count % 2 === 0 ? "x" : "o";
     setBoard(newBoard);
     setCount(count + 1);
+
+    const gameWinner = checkWinner(newBoard);
+    if (gameWinner) {
+      setWinner(gameWinner);
+      setLock(true);
+    }
   };
 
   const resetBoard = () => {
     setBoard(Array(9).fill(""));
     setCount(0);
+    setWinner(null);
     setLock(false);
+  };
+
+  const renderBoxes = (rowIndex) => {
+    return [0, 1, 2].map((colIndex) => {
+      const boxIndex = rowIndex * 3 + colIndex;
+      return (
+        <div className="boxes" key={boxIndex} onClick={() => toggle(boxIndex)}>
+          {board[boxIndex] === "x" && (
+            <img src={cross_icon} alt="X" className="box-img" />
+          )}
+          {board[boxIndex] === "o" && (
+            <img src={circle_icon} alt="O" className="box-img" />
+          )}
+        </div>
+      );
+    });
   };
 
   return (
     <div className="container">
       <h1 className="title">Tic-Tac-Toe</h1>
       <div className="board">
-        <div className="row1">
-          <div className="boxes" onClick={() => toggle(0)}>
-            {board[0] === "x" && <img src={cross_icon} alt="X" />}
-            {board[0] === "o" && <img src={circle_icon} alt="O" />}
+        {[0, 1, 2].map((rowIndex) => (
+          <div className={`row${rowIndex + 1}`} key={rowIndex}>
+            {renderBoxes(rowIndex)}
           </div>
-          <div className="boxes" onClick={() => toggle(1)}>
-            {board[1] === "x" && <img src={cross_icon} alt="X" />}
-            {board[1] === "o" && <img src={circle_icon} alt="O" />}
-          </div>
-          <div className="boxes" onClick={() => toggle(2)}>
-            {board[2] === "x" && <img src={cross_icon} alt="X" />}
-            {board[2] === "o" && <img src={circle_icon} alt="O" />}
-          </div>
-        </div>
-        <div className="row2">
-          <div className="boxes" onClick={() => toggle(3)}>
-            {board[3] === "x" && <img src={cross_icon} alt="X" />}
-            {board[3] === "o" && <img src={circle_icon} alt="O" />}
-          </div>
-          <div className="boxes" onClick={() => toggle(4)}>
-            {board[4] === "x" && <img src={cross_icon} alt="X" />}
-            {board[4] === "o" && <img src={circle_icon} alt="O" />}
-          </div>
-          <div className="boxes" onClick={() => toggle(5)}>
-            {board[5] === "x" && <img src={cross_icon} alt="X" />}
-            {board[5] === "o" && <img src={circle_icon} alt="O" />}
-          </div>
-        </div>
-        <div className="row3">
-          <div className="boxes" onClick={() => toggle(6)}>
-            {board[6] === "x" && <img src={cross_icon} alt="X" />}
-            {board[6] === "o" && <img src={circle_icon} alt="O" />}
-          </div>
-          <div className="boxes" onClick={() => toggle(7)}>
-            {board[7] === "x" && <img src={cross_icon} alt="X" />}
-            {board[7] === "o" && <img src={circle_icon} alt="O" />}
-          </div>
-          <div className="boxes" onClick={() => toggle(8)}>
-            {board[8] === "x" && <img src={cross_icon} alt="X" />}
-            {board[8] === "o" && <img src={circle_icon} alt="O" />}
-          </div>
-        </div>
+        ))}
       </div>
+      {winner && (
+        <h2 className="winner-message">
+          Congratulations! {winner.toUpperCase()} wins!
+        </h2>
+      )}
       <button className="reset" onClick={resetBoard}>
         Reset
       </button>
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // import React, { useState } from "react";
 // import ".././Game/tictactoe.css"

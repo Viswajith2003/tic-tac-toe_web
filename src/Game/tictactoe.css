@@ -1,55 +1,63 @@
 .container {
-  text-align: center;
-}
-.title {
-  font: bold;
-  font-size: 50px;
-  align-items: center;
-  margin-top: 100px;
-  color: rgb(128, 255, 1);
-}
-.reset {
-  padding: 5px;
-  width: 250px;
-  height: 80px;
-  cursor: pointer;
-  border-radius: 30px;
-  background-color: hsl(219, 66%, 10%);
-  color: hsl(188, 100%, 50%);
-  margin-top: 70px;
-  font-size: 35px;
-  border: none;
-  font: bold;
-}
-.reset:hover {
-  background-color: hsl(219, 66%, 14%);
-  color: hsl(188, 86%, 66%);
-  font-size: 33px;
-}
-.board {
-  height: 350px;
-  width: 350px;
-  margin: auto;
-  background-color: hsl(219, 66%, 10%);
-}
-.row1,
-.row2,
-.row3 {
-  display: flex;
-  justify-content: space-between;
-}
-
-.boxes {
-  height: 100px;
-  width: 100px;
-  background-color: hsl(188, 100%, 50%);
-  border-radius: 5px;
-  margin: 8px;
-}
-
-.boxes img {
-  max-width: 80%;
-  max-height: 80%;
-  display: block;
-  margin: 10px;
-}
+    text-align: center;
+  }
+  .title {
+    font-weight: bold;
+    font-size: 50px;
+    align-items: center;
+    margin-top: 100px;
+    color: rgb(128, 255, 1);
+  }
+  .reset {
+    padding: 5px;
+    width: 250px;
+    height: 80px;
+    cursor: pointer;
+    border-radius: 30px;
+    background-color: hsl(219, 66%, 15%);
+    color: hsl(188, 100%, 50%);
+    margin-top: 70px;
+    font-size: 35px;
+    border: none;
+    font-weight: bold;
+  }
+  .reset:hover {
+    background-color: hsl(219, 66%, 14%);
+    color: hsl(188, 86%, 66%);
+    font-size: 33px;
+  }
+  .board {
+    height: 350px;
+    width: 350px;
+    margin: auto;
+    border-radius: 4px;
+    background-color: hsl(194, 96%, 10%);
+  }
+  .row1,
+  .row2,
+  .row3 {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .boxes {
+    height: 100px;
+    width: 100px;
+    background-color: hsl(220, 71%, 7%);
+    border-radius: 5px;
+    margin: 8px;
+  }
+  
+  .box-img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
+  }
+  
+  .winner-message {
+    font-size: 24px;
+    color: rgb(128, 255, 1);
+    margin-top: 20px;
+  }
+  
