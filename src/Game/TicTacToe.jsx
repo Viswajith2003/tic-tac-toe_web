@@ -8,7 +8,7 @@ export default function Game() {
     <div className="container">
       <h1 className="title">Tic-Tac-Toe</h1>
       <div className="board">
-
+            
       </div>
       <button className="reset">Reset</button>
     </div>
