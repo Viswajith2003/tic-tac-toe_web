@@ -6,7 +6,7 @@
   font-size: 50px;
   align-items: center;
   margin-top: 100px;
-  color: rgb(0, 21, 55);
+  color: rgb(128, 255, 1);
 }
 .reset {
   padding: 5px;
@@ -24,27 +24,32 @@
 .reset:hover {
   background-color: hsl(219, 66%, 14%);
   color: hsl(188, 86%, 66%);
-  font-size: 33px
+  font-size: 33px;
 }
-.board{
-    height:350px;
-    width: 350px;
-    margin: auto;
-    background-color: rgb(9, 2, 41);
-    
+.board {
+  height: 350px;
+  width: 350px;
+  margin: auto;
+  background-color: hsl(219, 66%, 10%);
 }
 .row1,
 .row2,
 .row3 {
   display: flex;
   justify-content: space-between;
-  
 }
 
 .boxes {
   height: 100px;
   width: 100px;
-  background-color:rgb(157, 255, 0) ;
+  background-color: hsl(188, 100%, 50%);
   border-radius: 5px;
   margin: 8px;
+}
+
+.boxes img {
+  max-width: 80%;
+  max-height: 80%;
+  display: block;
+  margin: 10px;
 }
